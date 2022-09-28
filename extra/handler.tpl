@@ -1,11 +1,10 @@
 package {{.PkgName}}
 
 import (
-	"go-framework/common/response"
-
+	{{if .HasRequest}}"github.com/zeromicro/go-zero/rest/httpx"{{end}}
 	"net/http"
 
-	"github.com/zeromicro/go-zero/rest/httpx"
+	"go-framework/common/response"
 	{{.ImportPackages}}
 )
 

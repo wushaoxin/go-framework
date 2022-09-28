@@ -1,3 +1,11 @@
+info(
+	title: "用户文档"
+	desc: "用户接口"
+	author: ""
+	email: ""
+	version: "1.0"
+)
+
 type (
 	LoginReq {
 		Username string `json:"username"`
@@ -14,7 +22,15 @@ type (
 	}
 )
 
+// 声名 路由组(group)和路由前缀(prefix)
+// service block
+@server(
+	group: user
+	prefix: api/v1
+)
+
 service user-api {
+	@doc "用户登录"
 	@handler login
 	post /user/login (LoginReq) returns (LoginReply)
 }
