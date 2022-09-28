@@ -1,4 +1,4 @@
-package main
+package rpc
 
 import (
     "flag"
@@ -16,9 +16,9 @@ import (
     "google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "service/user/rpc/etc/user-rpc.yaml", "the config file")
+var configFile = flag.String("rpcConf", "service/user/rpc/etc/user-rpc.yaml", "the config file")
 
-func main() {
+func Main() {
     flag.Parse()
     
     var c config.Config
