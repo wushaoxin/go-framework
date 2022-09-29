@@ -1,35 +1,35 @@
 syntax = "v1"
 
 info(
-	title: "type title here"
-	desc: "type desc here"
-	author: "type author here"
-	email: "type email here"
-	version: "type version here"
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
 )
 
 type (
-	SearchReq {
-		// 图书名称
-		Name string `form:"name"`
-	}
+    SearchReq {
+        // 图书名称
+        Name string `form:"name"`
+    }
 
-	SearchReply {
-		Name  string `json:"name"`
-		Count int    `json:"count"`
-	}
+    SearchReply {
+        Name string `json:"name"`
+        Count int `json:"count"`
+    }
 )
 
 @server(
-	jwt: Auth
-	middleware: Example // 路由中间件声明
+    jwt: Auth
+    middleware: Example // 路由中间件声明
+    group: search
+    prefix: api/v1
 )
 service search-api {
-	@handler search
-	get /search/do (SearchReq) returns (SearchReply)
-}
+    @handler search
+    get /search/do (SearchReq) returns (SearchReply)
 
-service search-api {
-	@handler ping
-	get /search/ping
+    @handler ping
+    get /search/ping (SearchReq) returns (SearchReply)
 }

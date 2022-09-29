@@ -28,7 +28,6 @@ type (
 	group: user
 	prefix: api/v1
 )
-
 service user-api {
 	@doc "用户登录"
 	@handler login

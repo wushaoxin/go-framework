@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	search "go-framework/service/search/api/internal/handler/search"
 	"go-framework/service/search/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -17,11 +18,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/search/do",
-					Handler: searchHandler(serverCtx),
+					Handler: search.SearchHandler(serverCtx),
 				},
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api/v1"),
 	)
 
 	server.AddRoutes(

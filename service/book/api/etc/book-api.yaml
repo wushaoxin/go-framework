@@ -1,0 +1,16 @@
+Name: book-api
+Port: 8889
+
+Auth:
+  AccessSecret: abcabcabc
+  AccessExpire: 36000
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+
+Log:
+  Mode: file

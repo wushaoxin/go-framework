@@ -1,0 +1,63 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type (
+	SearchReq {
+		// 图书名称
+		Name string `form:"name"`
+	}
+
+	SearchReply {
+		Name  string `json:"name"`
+		Count int    `json:"count"`
+	}
+
+	RentReq {
+		// 图书名称
+		Name string `form:"name"`
+	}
+)
+
+//书本相关API
+@server(
+	jwt: Auth
+	middleware: Example // 路由中间件声明
+	group: bookManager
+	prefix: api/v1
+)
+service book-api {
+	@handler search
+	get /book/search (SearchReq) returns (SearchReply)
+}
+
+//书本行为相关API
+@server(
+	jwt: Auth
+	middleware: Example // 路由中间件声明
+	group: bookUse
+	prefix: api/v1
+)
+service book-api {
+	@handler rent
+	get /book/rent (RentReq)
+	
+	@handler back
+	get /book/back (RentReq)
+}
+
+//健康检查
+@server(
+	group: health
+	prefix: api/v1
+)
+service book-api {
+	@handler health
+	get /book/ping
+}
