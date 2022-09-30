@@ -14,3 +14,6 @@ UserRpc:
 
 Log:
   Mode: file
+  KeepDays: 10
+  MaxBackups: 10
+  Compress: true

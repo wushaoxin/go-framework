@@ -22,6 +22,5 @@ func NewHealthLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HealthLogi
 }
 
 func (l *HealthLogic) Health() error {
-    panic("测试错误日志")
     return nil
 }
